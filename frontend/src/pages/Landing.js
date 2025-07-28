@@ -8,6 +8,7 @@ import {
   BoltIcon,
   CpuChipIcon
 } from '@heroicons/react/24/outline';
+import { FaGithub } from 'react-icons/fa';
 
 const Landing = () => {
   const controls = useAnimation();
@@ -37,59 +38,32 @@ const Landing = () => {
     }
   ];
 
+  // SVG logos for languages (official colors)
+  const langList = [
+    { name: 'JavaScript', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#F7DF1E"/><text x="7" y="22" fontSize="16" fontWeight="bold" fill="#222">JS</text></svg> },
+    { name: 'TypeScript', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#3178C6"/><text x="4" y="22" fontSize="16" fontWeight="bold" fill="#fff">TS</text></svg> },
+    { name: 'Python', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#306998"/><g><circle cx="10" cy="12" r="2" fill="#FFD43B"/><circle cx="22" cy="20" r="2" fill="#FFD43B"/></g></svg> },
+    { name: 'C#', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#512BD4"/><text x="7" y="22" fontSize="16" fontWeight="bold" fill="#fff">C#</text></svg> },
+    { name: 'C++', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#00599C"/><text x="4" y="22" fontSize="16" fontWeight="bold" fill="#fff">C++</text></svg> },
+    { name: 'Java', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#fff"/><text x="4" y="22" fontSize="16" fontWeight="bold" fill="#007396">Java</text></svg> },
+    { name: 'JSON', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#292929"/><text x="7" y="22" fontSize="16" fontWeight="bold" fill="#FFD43B">&#123;&#125;</text></svg> },
+    { name: 'HTML', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#E44D26"/><text x="4" y="22" fontSize="16" fontWeight="bold" fill="#fff">&lt;/&gt;</text></svg> },
+    { name: 'PHP', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#777BB4"/><text x="4" y="22" fontSize="16" fontWeight="bold" fill="#fff">PHP</text></svg> },
+    { name: 'YAML', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#6E6E6E"/><text x="4" y="22" fontSize="16" fontWeight="bold" fill="#fff">!</text></svg> },
+    { name: 'Markdown', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#24292F"/><text x="4" y="22" fontSize="16" fontWeight="bold" fill="#fff">↓</text></svg> },
+    { name: 'Powershell', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#012456"/><text x="4" y="22" fontSize="16" fontWeight="bold" fill="#00BFFF">&gt;_</text></svg> },
+  ];
+
+  // SVG logos for main languages
+  const mainLangList = [
+    { name: 'C', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#283593"/><text x="8" y="22" fontSize="16" fontWeight="bold" fill="#fff">C</text></svg> },
+    { name: 'C++', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#00599C"/><text x="4" y="22" fontSize="16" fontWeight="bold" fill="#fff">C++</text></svg> },
+    { name: 'Java', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#fff"/><text x="4" y="22" fontSize="16" fontWeight="bold" fill="#007396">Java</text></svg> },
+    { name: 'Python', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#306998"/><g><circle cx="10" cy="12" r="2" fill="#FFD43B"/><circle cx="22" cy="20" r="2" fill="#FFD43B"/></g></svg> },
+  ];
+
   return (
     <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-primary)' }}>
-      {/* Navigation */}
-      <nav style={{ 
-        padding: 'var(--spacing-md) var(--spacing-xl)', 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center',
-        borderBottom: '1px solid var(--border-primary)'
-      }}>
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          style={{ display: 'flex', alignItems: 'center' }}
-        >
-          <div style={{ 
-            height: '40px', 
-            width: '40px', 
-            backgroundColor: 'var(--color-primary)', 
-            borderRadius: 'var(--radius-md)', 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            marginRight: 'var(--spacing-sm)'
-          }}>
-            <CodeBracketIcon style={{ height: '24px', width: '24px', color: 'var(--text-primary)' }} />
-          </div>
-          <span style={{ fontSize: '1.5rem', fontWeight: '700', color: 'var(--text-primary)' }}>
-            CodeEditor
-          </span>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          style={{ display: 'flex', gap: 'var(--spacing-md)' }}
-        >
-          <Link
-            to="/login"
-            className="btn btn-secondary"
-          >
-            Sign In
-          </Link>
-          <Link
-            to="/register"
-            className="btn btn-primary"
-          >
-            Get Started
-          </Link>
-        </motion.div>
-      </nav>
 
       {/* Hero Section */}
       <section style={{ 
@@ -117,7 +91,7 @@ const Landing = () => {
             left: '10%',
             width: '200px',
             height: '200px',
-            background: 'radial-gradient(circle, rgba(0, 122, 204, 0.1) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(255, 107, 53, 0.13) 0%, transparent 70%)',
             borderRadius: '50%',
             zIndex: 0
           }}
@@ -139,7 +113,74 @@ const Landing = () => {
             right: '15%',
             width: '150px',
             height: '150px',
-            background: 'radial-gradient(circle, rgba(78, 201, 176, 0.1) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(255, 179, 133, 0.13) 0%, transparent 70%)',
+            borderRadius: '50%',
+            zIndex: 0
+          }}
+        />
+
+        {/* Additional Background Ripples */}
+        <motion.div
+          animate={{
+            x: [0, 60, 0],
+            y: [0, 40, 0],
+          }}
+          transition={{
+            duration: 22,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          style={{
+            position: 'absolute',
+            top: '30%',
+            right: '30%',
+            width: '100px',
+            height: '100px',
+            background: 'radial-gradient(circle, rgba(255, 107, 53, 0.08) 0%, transparent 70%)',
+            borderRadius: '50%',
+            zIndex: 0
+          }}
+        />
+
+        <motion.div
+          animate={{
+            x: [0, -40, 0],
+            y: [0, -20, 0],
+          }}
+          transition={{
+            duration: 28,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          style={{
+            position: 'absolute',
+            top: '70%',
+            left: '20%',
+            width: '80px',
+            height: '80px',
+            background: 'radial-gradient(circle, rgba(255, 179, 133, 0.1) 0%, transparent 70%)',
+            borderRadius: '50%',
+            zIndex: 0
+          }}
+        />
+
+        <motion.div
+          animate={{
+            x: [0, 30, 0],
+            y: [0, -30, 0],
+          }}
+          transition={{
+            duration: 24,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          style={{
+            position: 'absolute',
+            top: '20%',
+            right: '5%',
+            width: '60px',
+            height: '60px',
+            background: 'radial-gradient(circle, rgba(255, 107, 53, 0.06) 0%, transparent 70%)',
             borderRadius: '50%',
             zIndex: 0
           }}
@@ -169,9 +210,9 @@ const Landing = () => {
                 display: 'inline-flex', 
                 alignItems: 'center', 
                 padding: 'var(--spacing-sm) var(--spacing-md)',
-                backgroundColor: 'rgba(0, 122, 204, 0.1)',
+                backgroundColor: 'rgba(255, 107, 53, 0.1)',
                 borderRadius: 'var(--radius-lg)',
-                border: '1px solid rgba(0, 122, 204, 0.3)',
+                border: '1px solid rgba(255, 107, 53, 0.3)',
                 marginBottom: 'var(--spacing-lg)'
               }}
             >
@@ -195,14 +236,14 @@ const Landing = () => {
             >
               Write, Run, and
               <br />
-              <span style={{ 
-                background: 'linear-gradient(135deg, var(--color-primary), var(--color-success))',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}>
-                Save Code
-              </span>
+                              <span style={{ 
+                  background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text'
+                }}>
+                  Save Code
+                </span>
             </motion.h1>
             
             <motion.p
@@ -216,7 +257,7 @@ const Landing = () => {
                 lineHeight: '1.6'
               }}
             >
-              Experience the power of real-time code execution. Write code in JavaScript, Python, Java, C++, C#, PHP, Ruby, Go, Rust, and more with instant feedback and professional IDE features.
+              Experience the power of real-time code execution. Write code in multiple programming-language with instant feedback and professional IDE features.
             </motion.p>
 
             <motion.div
@@ -232,11 +273,11 @@ const Landing = () => {
                 <Link
                   to="/register"
                   className="btn btn-primary"
-                  style={{ 
-                    fontSize: '1.125rem', 
-                    padding: 'var(--spacing-md) var(--spacing-xl)',
-                    boxShadow: '0 4px 20px rgba(0, 122, 204, 0.3)'
-                  }}
+                                  style={{ 
+                  fontSize: '1.125rem', 
+                  padding: 'var(--spacing-md) var(--spacing-xl)',
+                  boxShadow: '0 4px 20px rgba(255, 107, 53, 0.3)'
+                }}
                 >
                   Start Coding Now
                   <ArrowRightIcon style={{ height: '20px', width: '20px', marginLeft: 'var(--spacing-sm)' }} />
@@ -268,6 +309,29 @@ const Landing = () => {
               perspective: '1000px'
             }}
           >
+            {/* Big Ripple Behind SVG */}
+            <motion.div
+              animate={{
+                scale: [1, 1.1, 1],
+                opacity: [0.3, 0.5, 0.3]
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                width: '500px',
+                height: '500px',
+                background: 'radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%)',
+                borderRadius: '50%',
+                transform: 'translate(-50%, -50%)',
+                zIndex: -1
+              }}
+            />
             <motion.div
               animate={controls}
               style={{
@@ -374,18 +438,18 @@ const Landing = () => {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              style={{
-                position: 'absolute',
-                top: '10%',
-                right: '10%',
-                background: 'rgba(0, 122, 204, 0.1)',
-                border: '1px solid rgba(0, 122, 204, 0.3)',
-                borderRadius: 'var(--radius-md)',
-                padding: 'var(--spacing-sm)',
-                fontSize: '0.75rem',
-                color: 'var(--color-primary)',
-                fontFamily: 'monospace'
-              }}
+                              style={{
+                  position: 'absolute',
+                  top: '10%',
+                  right: '10%',
+                  background: 'rgba(255, 107, 53, 0.1)',
+                  border: '1px solid rgba(255, 107, 53, 0.3)',
+                  borderRadius: 'var(--radius-md)',
+                  padding: 'var(--spacing-sm)',
+                  fontSize: '0.75rem',
+                  color: 'var(--color-primary)',
+                  fontFamily: 'monospace'
+                }}
             >
               {'{ code }'}
             </motion.div>
@@ -401,18 +465,18 @@ const Landing = () => {
                 ease: "easeInOut",
                 delay: 1
               }}
-              style={{
-                position: 'absolute',
-                bottom: '20%',
-                left: '5%',
-                background: 'rgba(78, 201, 176, 0.1)',
-                border: '1px solid rgba(78, 201, 176, 0.3)',
-                borderRadius: 'var(--radius-md)',
-                padding: 'var(--spacing-sm)',
-                fontSize: '0.75rem',
-                color: 'var(--color-success)',
-                fontFamily: 'monospace'
-              }}
+                              style={{
+                  position: 'absolute',
+                  bottom: '20%',
+                  left: '5%',
+                  background: 'rgba(0, 212, 170, 0.1)',
+                  border: '1px solid rgba(0, 212, 170, 0.3)',
+                  borderRadius: 'var(--radius-md)',
+                  padding: 'var(--spacing-sm)',
+                  fontSize: '0.75rem',
+                  color: 'var(--color-success)',
+                  fontFamily: 'monospace'
+                }}
             >
               {'< / >'}
             </motion.div>
@@ -428,75 +492,46 @@ const Landing = () => {
           backgroundColor: 'var(--bg-secondary)'
         }}
       >
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            style={{ textAlign: 'center', marginBottom: 'var(--spacing-2xl)' }}
-          >
-            <h2 style={{ 
-              fontSize: '2.5rem', 
-              fontWeight: '700', 
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          alignItems: 'center',
+          gap: 'var(--spacing-2xl)'
+        }}>
+          {/* Left: Large Text */}
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+            <span style={{
+              fontSize: '2.2rem',
+              fontWeight: 700,
               color: 'var(--text-primary)',
-              marginBottom: 'var(--spacing-lg)'
+              letterSpacing: '0.5px',
+              lineHeight: 1.2
             }}>
-              Why Choose CodeEditor?
-            </h2>
-            <p style={{ 
-              fontSize: '1.125rem', 
-              color: 'var(--text-secondary)',
-              maxWidth: '600px',
-              margin: '0 auto'
-            }}>
-              Professional-grade code editor with powerful features for developers
-            </p>
-          </motion.div>
-
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-            gap: 'var(--spacing-xl)',
-            marginTop: 'var(--spacing-xl)'
+              Supports multiple languages
+            </span>
+          </div>
+          {/* Right: Main Language Badges Grid */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
+            gap: 'var(--spacing-lg) var(--spacing-xl)',
+            justifyItems: 'start',
+            alignItems: 'center',
+            padding: 'var(--spacing-lg) 0',
+            width: '100%'
           }}>
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="card"
-                style={{ textAlign: 'center' }}
-              >
-                <div style={{ 
-                  height: '60px', 
-                  width: '60px', 
-                  backgroundColor: 'var(--color-primary)', 
-                  borderRadius: '50%', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center',
-                  margin: '0 auto var(--spacing-lg)',
-                  color: 'var(--text-primary)'
-                }}>
-                  {feature.icon}
-                </div>
-                <h3 style={{ 
-                  fontSize: '1.5rem', 
-                  fontWeight: '600', 
-                  color: 'var(--text-primary)',
-                  marginBottom: 'var(--spacing-md)'
-                }}>
-                  {feature.title}
-                </h3>
-                <p style={{ 
-                  color: 'var(--text-secondary)',
-                  lineHeight: '1.6'
-                }}>
-                  {feature.description}
-                </p>
-              </motion.div>
+            {mainLangList.map((lang) => (
+              <div key={lang.name} style={{ display: 'flex', alignItems: 'center', gap: '1em', fontWeight: 500, fontSize: '1.1rem', color: 'var(--text-primary)' }}>
+                {lang.logo}
+                <span>{lang.name}</span>
+              </div>
             ))}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5em', fontWeight: 500, fontSize: '1.1rem', color: 'var(--text-secondary)', opacity: 0.7 }}>
+              <span style={{ fontSize: '1.5rem' }}>...</span>
+              <span>and more coming</span>
+            </div>
           </div>
         </div>
       </section>
@@ -549,6 +584,22 @@ const Landing = () => {
       </footer>
     </div>
   );
+};
+
+const badgeStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.5em',
+  background: 'var(--bg-tertiary)',
+  color: 'var(--color-primary)',
+  fontWeight: 600,
+  fontSize: '1rem',
+  borderRadius: 'var(--radius-lg)',
+  padding: '0.5em 1em',
+  boxShadow: '0 2px 8px 0 rgba(255,107,53,0.08)',
+  letterSpacing: '0.2px',
+  minWidth: '70px',
+  justifyContent: 'center'
 };
 
 export default Landing; 
