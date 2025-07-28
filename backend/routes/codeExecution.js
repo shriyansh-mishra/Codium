@@ -7,10 +7,10 @@ const os = require('os');
 
 const router = express.Router();
 
-// Execute JavaScript code
+// Execute code in multiple languages
 router.post('/', [
   body('code').isLength({ min: 1, max: 10000 }),
-  body('language').isIn(['javascript', 'react', 'html'])
+  body('language').isIn(['javascript', 'react', 'html', 'python', 'java', 'cpp', 'csharp', 'php', 'ruby', 'go', 'rust'])
 ], async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -22,16 +22,21 @@ router.post('/', [
 
     // Create temporary directory for execution
     const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'code-exec-'));
-    const scriptPath = path.join(tempDir, 'script.js');
-
+    
     let processedCode = code;
-    let executionCommand = 'node';
-    let executionArgs = [scriptPath];
+    let executionCommand = '';
+    let executionArgs = [];
+    let fileExtension = '';
+    
+    const scriptPath = path.join(tempDir, `script${fileExtension}`);
 
     // Process code based on language
     switch (language) {
       case 'javascript':
         processedCode = code;
+        executionCommand = 'node';
+        executionArgs = [scriptPath];
+        fileExtension = '.js';
         break;
       
       case 'react':
@@ -49,6 +54,9 @@ if (typeof App !== 'undefined') {
   console.log('Code executed successfully');
 }
         `;
+        executionCommand = 'node';
+        executionArgs = [scriptPath];
+        fileExtension = '.js';
         break;
       
       case 'html':
@@ -57,10 +65,100 @@ if (typeof App !== 'undefined') {
 console.log('HTML Code:');
 console.log(\`${code.replace(/`/g, '\\`')}\`);
         `;
+        executionCommand = 'node';
+        executionArgs = [scriptPath];
+        fileExtension = '.js';
+        break;
+
+      case 'python':
+        processedCode = code;
+        executionCommand = 'python';
+        executionArgs = [scriptPath];
+        fileExtension = '.py';
+        break;
+
+      case 'java':
+        // Java requires class name to match file name
+        const className = 'Main';
+        processedCode = `public class ${className} {
+    public static void main(String[] args) {
+        ${code}
+    }
+}`;
+        executionCommand = 'java';
+        executionArgs = ['-cp', tempDir, className];
+        fileExtension = '.java';
+        break;
+
+      case 'cpp':
+        processedCode = `#include <iostream>
+using namespace std;
+
+int main() {
+    ${code}
+    return 0;
+}`;
+        executionCommand = 'g++';
+        executionArgs = ['-o', path.join(tempDir, 'program'), scriptPath, '&&', 'g++', '-o', path.join(tempDir, 'program'), scriptPath, '&&', path.join(tempDir, 'program')];
+        fileExtension = '.cpp';
+        break;
+
+      case 'csharp':
+        processedCode = `using System;
+
+class Program {
+    static void Main() {
+        ${code}
+    }
+}`;
+        executionCommand = 'dotnet';
+        executionArgs = ['run', '--project', tempDir];
+        fileExtension = '.cs';
+        break;
+
+      case 'php':
+        processedCode = `<?php
+${code}
+?>`;
+        executionCommand = 'php';
+        executionArgs = [scriptPath];
+        fileExtension = '.php';
+        break;
+
+      case 'ruby':
+        processedCode = code;
+        executionCommand = 'ruby';
+        executionArgs = [scriptPath];
+        fileExtension = '.rb';
+        break;
+
+      case 'go':
+        processedCode = `package main
+
+import "fmt"
+
+func main() {
+    ${code}
+}`;
+        executionCommand = 'go';
+        executionArgs = ['run', scriptPath];
+        fileExtension = '.go';
+        break;
+
+      case 'rust':
+        processedCode = `fn main() {
+    ${code}
+}`;
+        executionCommand = 'rustc';
+        executionArgs = [scriptPath, '-o', path.join(tempDir, 'program'), '&&', path.join(tempDir, 'program')];
+        fileExtension = '.rs';
         break;
       
       default:
         processedCode = code;
+        executionCommand = 'node';
+        executionArgs = [scriptPath];
+        fileExtension = '.js';
     }
 
     // Write code to temporary file
