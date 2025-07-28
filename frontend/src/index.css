@@ -322,3 +322,202 @@ code {
   background: transparent;
   box-shadow: none;
 }
+
+/* Enhanced Feature tile cards section styles with persistent and expanding orange glow */
+/* Stronger, more noticeable orange glow for feature cards */
+/* Feature tile cards: softer, smaller orange glow only on hover */
+.feature-tile-card {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 12px 0 rgba(40,53,147,0.06);
+  padding: 2.5rem 2rem 2rem 2rem;
+  min-width: 240px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.18s cubic-bezier(0.4,0,0.2,1), box-shadow 0.18s cubic-bezier(0.4,0,0.2,1);
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.feature-tile-card:hover {
+  transform: translateY(-14px) scale(1.07);
+  box-shadow: 0 0 36px 8px #ff8800, 0 8px 24px 0 rgba(40,53,147,0.13);
+}
+.feature-tile-card::after {
+  content: '';
+  position: absolute;
+  left: -60%;
+  top: -60%;
+  width: 220%;
+  height: 220%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.04) 60%, rgba(255,255,255,0) 100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 2;
+}
+.feature-tile-card:hover::after {
+  opacity: 1;
+  animation: reflect-shine 0.4s linear;
+}
+@keyframes reflect-shine {
+  0% {
+    transform: translateX(-80%) rotate(10deg);
+    opacity: 0.2;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(120%) rotate(10deg);
+    opacity: 0;
+  }
+}
+.feature-tile-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  z-index: 1;
+}
+.feature-tile-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  text-align: center;
+  z-index: 1;
+}
+.feature-tile-card p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0;
+  z-index: 1;
+}
+
+/* Responsive and centered card layout for features section */
+.features-tile-row {
+  display: flex;
+  gap: var(--spacing-2xl);
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1100px;
+}
+@media (max-width: 900px) {
+  .features-tile-row {
+    gap: var(--spacing-xl);
+  }
+  .feature-tile-card {
+    min-width: 220px;
+    max-width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .features-tile-row {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+  }
+  .feature-tile-card {
+    min-width: 90vw;
+    max-width: 98vw;
+    padding: 2rem 1rem 1.5rem 1rem;
+  }
+}
+
+/* Animated orange ripple background elements */
+.ripple-bg {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.18;
+  z-index: 0;
+  animation: ripple-float 12s ease-in-out infinite alternate;
+}
+.ripple-bg-1 {
+  width: 340px;
+  height: 340px;
+  left: -120px;
+  top: 80px;
+  background: radial-gradient(circle, #ff8800 0%, transparent 70%);
+  animation-delay: 0s;
+}
+.ripple-bg-2 {
+  width: 220px;
+  height: 220px;
+  right: -80px;
+  top: 220px;
+  background: radial-gradient(circle, #ff7300 0%, transparent 70%);
+  animation-delay: 2s;
+}
+.ripple-bg-3 {
+  width: 180px;
+  height: 180px;
+  left: 60vw;
+  bottom: 120px;
+  background: radial-gradient(circle, #ffb347 0%, transparent 70%);
+  animation-delay: 4s;
+}
+.ripple-bg-4 {
+  width: 120px;
+  height: 120px;
+  right: 18vw;
+  bottom: 60px;
+  background: radial-gradient(circle, #ff8800 0%, transparent 70%);
+  animation-delay: 6s;
+}
+.ripple-bg-5 {
+  width: 260px;
+  height: 260px;
+  left: 10vw;
+  bottom: 220px;
+  background: radial-gradient(circle, #ff8800 0%, transparent 70%);
+  animation-delay: 1.5s;
+}
+.ripple-bg-6 {
+  width: 140px;
+  height: 140px;
+  right: 8vw;
+  top: 480px;
+  background: radial-gradient(circle, #ff7300 0%, transparent 70%);
+  animation-delay: 3.5s;
+}
+.ripple-bg-7 {
+  width: 200px;
+  height: 200px;
+  left: 40vw;
+  bottom: 40px;
+  background: radial-gradient(circle, #ff8800 0%, transparent 70%);
+  animation-delay: 5.5s;
+}
+.ripple-bg-8 {
+  width: 100px;
+  height: 100px;
+  right: 30vw;
+  bottom: 180px;
+  background: radial-gradient(circle, #ff7300 0%, transparent 70%);
+  animation-delay: 7s;
+}
+@keyframes ripple-float {
+  0% {
+    transform: scale(1) translateY(0px);
+    opacity: 0.18;
+  }
+  50% {
+    transform: scale(1.08) translateY(-18px);
+    opacity: 0.22;
+  }
+  100% {
+    transform: scale(0.96) translateY(12px);
+    opacity: 0.16;
+  }
+}
