@@ -620,7 +620,7 @@ const Landing = () => {
           color: 'var(--text-primary)',
           marginBottom: 'var(--spacing-xl)'
         }}>
-          Features of CodeEditor
+          Features of Codium
         </h2>
         <div className="features-tile-row">
           {/* Save Snippets Card */}
@@ -691,7 +691,7 @@ const Landing = () => {
         textAlign: 'center',
         color: 'var(--text-tertiary)'
       }}>
-        <p>&copy; 2024 CodeEditor. Built with ❤️ for developers.</p>
+        <p>&copy; 2024 Codium. Built with ❤️ for developers.</p>
       </footer>
     </div>
   );
