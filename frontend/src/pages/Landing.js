@@ -632,7 +632,12 @@ const Landing = () => {
             viewport={{ once: true, amount: 0.4 }}
           >
             <div className="feature-tile-icon" style={{ background: 'rgba(255,107,53,0.08)' }}>
-              <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><path d="M5 5v14h14V5H5zm2 2h10v10H7V7zm2 2v6h6V9H9z" fill="#FF6B35"/></svg>
+              {/* Modern bookmark/code file SVG */}
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="7" y="6" width="22" height="24" rx="4" fill="#FF6B35"/>
+                <path d="M13 12h10M13 16h10M13 20h6" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+                <path d="M11 30l7-5 7 5V10a2 2 0 0 0-2-2H13a2 2 0 0 0-2 2v20z" fill="#fff" fillOpacity=".18"/>
+              </svg>
             </div>
             <h3>Save Snippets</h3>
             <p>Store your favorite code snippets securely and access them anytime.</p>
@@ -646,7 +651,13 @@ const Landing = () => {
             viewport={{ once: true, amount: 0.4 }}
           >
             <div className="feature-tile-icon" style={{ background: 'rgba(0,212,170,0.08)' }}>
-              <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><path d="M15 8V5l7 7-7 7v-3H4v-8h11z" fill="#00D4AA"/></svg>
+              {/* Modern share/network SVG */}
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="27" cy="9" r="4" fill="#00D4AA"/>
+                <circle cx="9" cy="18" r="4" fill="#00D4AA"/>
+                <circle cx="27" cy="27" r="4" fill="#00D4AA"/>
+                <path d="M13 18l8-6M13 18l8 6" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
             </div>
             <h3>Share Instantly</h3>
             <p>Share your code with a single click and collaborate in real-time.</p>
@@ -660,7 +671,12 @@ const Landing = () => {
             viewport={{ once: true, amount: 0.4 }}
           >
             <div className="feature-tile-icon" style={{ background: 'rgba(40,53,147,0.08)' }}>
-              <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><path d="M8 17l4-4-4-4m8 8V7" stroke="#283593" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              {/* Modern play/terminal SVG */}
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="7" y="8" width="22" height="20" rx="4" fill="#283593"/>
+                <path d="M15 18l4-3v6l-4-3z" fill="#fff"/>
+                <rect x="11" y="12" width="14" height="12" rx="2" fill="#fff" fillOpacity=".18"/>
+              </svg>
             </div>
             <h3>Real-time Code Execution</h3>
             <p>Run your code instantly in multiple languages and see results live.</p>
