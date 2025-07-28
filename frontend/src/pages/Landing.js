@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useAnimation } from 'framer-motion';
 import { 
@@ -8,7 +8,13 @@ import {
   BoltIcon,
   CpuChipIcon
 } from '@heroicons/react/24/outline';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaJava, FaPython, FaCode, FaCodeBranch } from 'react-icons/fa';
+
+// Add this CSS to your index.css or as a style tag in the component:
+// .marquee-container { overflow: hidden; width: 100%; position: relative; height: 3rem; }
+// .marquee-text { display: inline-block; white-space: nowrap; font-size: 2rem; font-weight: 600; color: var(--orange); position: absolute; left: 100%; animation: none; }
+// .marquee-animate { animation: marquee-left 6s linear 1; }
+// @keyframes marquee-left { from { left: 100%; } to { left: -100%; } }
 
 const Landing = () => {
   const controls = useAnimation();
@@ -54,12 +60,35 @@ const Landing = () => {
     { name: 'Powershell', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#012456"/><text x="4" y="22" fontSize="16" fontWeight="bold" fill="#00BFFF">&gt;_</text></svg> },
   ];
 
-  // SVG logos for main languages
+  const CLogo = (
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="16,3 29,10.5 29,25.5 16,33 3,25.5 3,10.5" fill="#283593"/>
+      <text x="16" y="22" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#fff">C</text>
+    </svg>
+  );
+  const CppLogo = (
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="16,3 29,10.5 29,25.5 16,33 3,25.5 3,10.5" fill="#00599C"/>
+      <text x="16" y="22" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#fff">C++</text>
+    </svg>
+  );
   const mainLangList = [
-    { name: 'C', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#283593"/><text x="8" y="22" fontSize="16" fontWeight="bold" fill="#fff">C</text></svg> },
-    { name: 'C++', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#00599C"/><text x="4" y="22" fontSize="16" fontWeight="bold" fill="#fff">C++</text></svg> },
-    { name: 'Java', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#fff"/><text x="4" y="22" fontSize="16" fontWeight="bold" fill="#007396">Java</text></svg> },
-    { name: 'Python', logo: <svg width="24" height="24" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#306998"/><g><circle cx="10" cy="12" r="2" fill="#FFD43B"/><circle cx="22" cy="20" r="2" fill="#FFD43B"/></g></svg> },
+    {
+      name: "C",
+      logo: CLogo
+    },
+    {
+      name: "C++",
+      logo: CppLogo
+    },
+    {
+      name: "Java",
+      logo: <FaJava size={24} color="#007396" />
+    },
+    {
+      name: "Python",
+      logo: <FaPython size={24} color="#306998" />
+    }
   ];
 
   return (
@@ -202,26 +231,6 @@ const Landing = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              style={{ 
-                display: 'inline-flex', 
-                alignItems: 'center', 
-                padding: 'var(--spacing-sm) var(--spacing-md)',
-                backgroundColor: 'rgba(255, 107, 53, 0.1)',
-                borderRadius: 'var(--radius-lg)',
-                border: '1px solid rgba(255, 107, 53, 0.3)',
-                marginBottom: 'var(--spacing-lg)'
-              }}
-            >
-              <SparklesIcon style={{ height: '16px', width: '16px', color: 'var(--color-primary)', marginRight: 'var(--spacing-xs)' }} />
-              <span style={{ fontSize: '0.875rem', color: 'var(--color-primary)', fontWeight: '500' }}>
-                Professional Code Editor
-              </span>
-            </motion.div>
-
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -236,14 +245,14 @@ const Landing = () => {
             >
               Write, Run, and
               <br />
-                              <span style={{ 
-                  background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text'
-                }}>
-                  Save Code
-                </span>
+              <span style={{ 
+                background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}>
+                Save Code
+              </span>
             </motion.h1>
             
             <motion.p
