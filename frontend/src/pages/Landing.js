@@ -92,8 +92,7 @@ const Landing = () => {
   ];
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-primary)' }}>
-
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-primary)', position: 'relative', overflow: 'hidden' }}>
       {/* Hero Section */}
       <section style={{ 
         padding: 'var(--spacing-2xl) var(--spacing-xl)', 
@@ -493,11 +492,21 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* Animated Orange Ripples (below hero only) */}
+      <div className="ripple-bg ripple-bg-1" />
+      <div className="ripple-bg ripple-bg-2" />
+      <div className="ripple-bg ripple-bg-3" />
+      <div className="ripple-bg ripple-bg-4" />
+      <div className="ripple-bg ripple-bg-5" />
+      <div className="ripple-bg ripple-bg-6" />
+      <div className="ripple-bg ripple-bg-7" />
+      <div className="ripple-bg ripple-bg-8" />
+
       {/* Features Section */}
       <section 
         id="features"
         style={{ 
-          padding: 'var(--spacing-2xl) var(--spacing-xl)',
+          padding: 'var(--spacing-2xl) var(--spacing-xl)', 
           backgroundColor: 'var(--bg-secondary)'
         }}
       >
@@ -547,41 +556,49 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section style={{ 
+      {/* Features Tile Cards Section Below Language Grid */}
+      <section style={{
         padding: 'var(--spacing-2xl) var(--spacing-xl)',
-        textAlign: 'center'
+        background: 'var(--bg-secondary)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          style={{ maxWidth: '600px', margin: '0 auto' }}
-        >
-          <h2 style={{ 
-            fontSize: '2.5rem', 
-            fontWeight: '700', 
-            color: 'var(--text-primary)',
-            marginBottom: 'var(--spacing-lg)'
-          }}>
-            Ready to Start Coding?
-          </h2>
-          <p style={{ 
-            fontSize: '1.125rem', 
-            color: 'var(--text-secondary)',
-            marginBottom: 'var(--spacing-xl)'
-          }}>
-            Join thousands of developers who trust CodeEditor for their coding needs
-          </p>
-          <Link
-            to="/register"
-            className="btn btn-primary"
-            style={{ fontSize: '1.25rem', padding: 'var(--spacing-md) var(--spacing-xl)' }}
-          >
-            Get Started for Free
-            <ArrowRightIcon style={{ height: '24px', width: '24px', marginLeft: 'var(--spacing-sm)' }} />
-          </Link>
-        </motion.div>
+        <h2 style={{
+          fontSize: '2.2rem',
+          fontWeight: 700,
+          color: 'var(--text-primary)',
+          marginBottom: 'var(--spacing-xl)'
+        }}>
+          Features of CodeEditor
+        </h2>
+        <div className="features-tile-row">
+          {/* Save Snippets Card */}
+          <div className="feature-tile-card">
+            <div className="feature-tile-icon" style={{ background: 'rgba(255,107,53,0.08)' }}>
+              <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><path d="M5 5v14h14V5H5zm2 2h10v10H7V7zm2 2v6h6V9H9z" fill="#FF6B35"/></svg>
+            </div>
+            <h3>Save Snippets</h3>
+            <p>Store your favorite code snippets securely and access them anytime.</p>
+          </div>
+          {/* Share Instantly Card */}
+          <div className="feature-tile-card">
+            <div className="feature-tile-icon" style={{ background: 'rgba(0,212,170,0.08)' }}>
+              <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><path d="M15 8V5l7 7-7 7v-3H4v-8h11z" fill="#00D4AA"/></svg>
+            </div>
+            <h3>Share Instantly</h3>
+            <p>Share your code with a single click and collaborate in real-time.</p>
+          </div>
+          {/* Real-time Code Execution Card */}
+          <div className="feature-tile-card">
+            <div className="feature-tile-icon" style={{ background: 'rgba(40,53,147,0.08)' }}>
+              <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><path d="M8 17l4-4-4-4m8 8V7" stroke="#283593" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </div>
+            <h3>Real-time Code Execution</h3>
+            <p>Run your code instantly in multiple languages and see results live.</p>
+          </div>
+        </div>
       </section>
 
       {/* Footer */}
