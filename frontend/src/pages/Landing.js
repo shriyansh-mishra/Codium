@@ -503,8 +503,12 @@ const Landing = () => {
       <div className="ripple-bg ripple-bg-8" />
 
       {/* Features Section */}
-      <section 
+      <motion.section 
         id="features"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+        viewport={{ once: true, amount: 0.4 }}
         style={{ 
           padding: 'var(--spacing-2xl) var(--spacing-xl)', 
           backgroundColor: 'var(--bg-secondary)'
@@ -520,7 +524,12 @@ const Landing = () => {
           gap: 'var(--spacing-2xl)'
         }}>
           {/* Left: Large Text */}
-          <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.4 }}
+            style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
             <span style={{
               fontSize: '2.2rem',
               fontWeight: 700,
@@ -530,41 +539,81 @@ const Landing = () => {
             }}>
               Supports multiple languages
             </span>
-          </div>
+          </motion.div>
           {/* Right: Main Language Badges Grid */}
-          <div style={{
-            flex: 2,
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
-            gap: 'var(--spacing-lg) var(--spacing-xl)',
-            justifyItems: 'start',
-            alignItems: 'center',
-            padding: 'var(--spacing-lg) 0',
-            width: '100%'
-          }}>
-            {mainLangList.map((lang) => (
-              <div key={lang.name} className={`lang-badge ${lang.name.toLowerCase().replace(/[^a-z0-9]/g, '')}`}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.4 }}
+            style={{
+              flex: 2,
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
+              gap: 'var(--spacing-lg) var(--spacing-xl)',
+              justifyItems: 'start',
+              alignItems: 'center',
+              padding: 'var(--spacing-lg) 0',
+              width: '100%'
+            }}>
+            {mainLangList.map((lang, idx) => (
+              <motion.div
+                key={lang.name}
+                className={`lang-badge ${lang.name.toLowerCase().replace(/[^a-z0-9]/g, '')}`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 + idx * 0.08, ease: 'easeOut' }}
+                viewport={{ once: true, amount: 0.4 }}
+              >
                 {lang.logo}
                 <span>{lang.name}</span>
-              </div>
+              </motion.div>
             ))}
-            <div className="lang-badge more">
+            <motion.div
+              className="lang-badge more"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 + mainLangList.length * 0.08, ease: 'easeOut' }}
+              viewport={{ once: true, amount: 0.4 }}
+            >
               <span style={{ fontSize: '1.5rem' }}>...</span>
               <span>and more coming</span>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
+
+      {/* Animated Divider between language and features sections */}
+      <motion.div
+        initial={{ opacity: 0, scaleX: 0.5 }}
+        whileInView={{ opacity: 1, scaleX: 1 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+        viewport={{ once: true, amount: 0.6 }}
+        style={{
+          width: '80%',
+          height: '2px',
+          background: 'linear-gradient(90deg, transparent 0%, var(--orange) 50%, transparent 100%)',
+          opacity: 0.32,
+          borderRadius: '2px',
+          margin: '5px auto',
+          transformOrigin: 'center',
+        }}
+      />
 
       {/* Features Tile Cards Section Below Language Grid */}
-      <section style={{
-        padding: 'var(--spacing-2xl) var(--spacing-xl)',
-        background: 'var(--bg-secondary)',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+        viewport={{ once: true, amount: 0.4 }}
+        style={{
+          padding: 'var(--spacing-2xl) var(--spacing-xl)',
+          background: 'var(--bg-secondary)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
         <h2 style={{
           fontSize: '2.2rem',
           fontWeight: 700,
@@ -575,31 +624,49 @@ const Landing = () => {
         </h2>
         <div className="features-tile-row">
           {/* Save Snippets Card */}
-          <div className="feature-tile-card">
+          <motion.div
+            className="feature-tile-card"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.4 }}
+          >
             <div className="feature-tile-icon" style={{ background: 'rgba(255,107,53,0.08)' }}>
               <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><path d="M5 5v14h14V5H5zm2 2h10v10H7V7zm2 2v6h6V9H9z" fill="#FF6B35"/></svg>
             </div>
             <h3>Save Snippets</h3>
             <p>Store your favorite code snippets securely and access them anytime.</p>
-          </div>
+          </motion.div>
           {/* Share Instantly Card */}
-          <div className="feature-tile-card">
+          <motion.div
+            className="feature-tile-card"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.18, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.4 }}
+          >
             <div className="feature-tile-icon" style={{ background: 'rgba(0,212,170,0.08)' }}>
               <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><path d="M15 8V5l7 7-7 7v-3H4v-8h11z" fill="#00D4AA"/></svg>
             </div>
             <h3>Share Instantly</h3>
             <p>Share your code with a single click and collaborate in real-time.</p>
-          </div>
+          </motion.div>
           {/* Real-time Code Execution Card */}
-          <div className="feature-tile-card">
+          <motion.div
+            className="feature-tile-card"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.26, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.4 }}
+          >
             <div className="feature-tile-icon" style={{ background: 'rgba(40,53,147,0.08)' }}>
               <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><path d="M8 17l4-4-4-4m8 8V7" stroke="#283593" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
             </div>
             <h3>Real-time Code Execution</h3>
             <p>Run your code instantly in multiple languages and see results live.</p>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer */}
       <footer style={{ 
