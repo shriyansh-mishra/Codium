@@ -342,9 +342,10 @@ code {
   overflow: hidden;
   z-index: 1;
 }
-.feature-tile-card:hover {
-  transform: translateY(-14px) scale(1.07);
-  box-shadow: 0 0 36px 8px #ff8800, 0 8px 24px 0 rgba(40,53,147,0.13);
+/* Fix hover effect for feature-tile-card when wrapped in motion.div */
+:where(.feature-tile-card):hover {
+  transform: translateY(-14px) scale(1.07) !important;
+  box-shadow: 0 0 36px 8px #ff8800, 0 8px 24px 0 rgba(40,53,147,0.13) !important;
 }
 .feature-tile-card::after {
   content: '';
@@ -359,7 +360,7 @@ code {
   transition: opacity 0.3s;
   z-index: 2;
 }
-.feature-tile-card:hover::after {
+:where(.feature-tile-card):hover::after {
   opacity: 1;
   animation: reflect-shine 0.4s linear;
 }
