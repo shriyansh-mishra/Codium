@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // Components
 import Layout from './components/Layout/Layout';
+import GlobalNavbar from './components/GlobalNavbar/GlobalNavbar';
 import Landing from './pages/Landing';
 import CodeEditor from './pages/CodeEditor';
 import Login from './pages/Login';
@@ -49,6 +50,7 @@ function App() {
       <AuthProvider>
         <Router>
           <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
+            <GlobalNavbar />
             <AnimatePresence mode="wait">
               <Routes>
                 {/* Landing Page */}
@@ -150,7 +152,7 @@ function App() {
                 />
               </Routes>
             </AnimatePresence>
-          </div>
+    </div>
         </Router>
       </AuthProvider>
     </QueryClientProvider>
