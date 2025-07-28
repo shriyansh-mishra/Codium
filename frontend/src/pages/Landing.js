@@ -495,13 +495,14 @@ const Landing = () => {
         <div style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
+          display: 'flex',
+          flexDirection: 'row',
           alignItems: 'center',
+          minHeight: '220px',
           gap: 'var(--spacing-2xl)'
         }}>
           {/* Left: Large Text */}
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
             <span style={{
               fontSize: '2.2rem',
               fontWeight: 700,
@@ -514,6 +515,7 @@ const Landing = () => {
           </div>
           {/* Right: Main Language Badges Grid */}
           <div style={{
+            flex: 2,
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
             gap: 'var(--spacing-lg) var(--spacing-xl)',
@@ -523,12 +525,12 @@ const Landing = () => {
             width: '100%'
           }}>
             {mainLangList.map((lang) => (
-              <div key={lang.name} style={{ display: 'flex', alignItems: 'center', gap: '1em', fontWeight: 500, fontSize: '1.1rem', color: 'var(--text-primary)' }}>
+              <div key={lang.name} className={`lang-badge ${lang.name.toLowerCase().replace(/[^a-z0-9]/g, '')}`}>
                 {lang.logo}
                 <span>{lang.name}</span>
               </div>
             ))}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5em', fontWeight: 500, fontSize: '1.1rem', color: 'var(--text-secondary)', opacity: 0.7 }}>
+            <div className="lang-badge more">
               <span style={{ fontSize: '1.5rem' }}>...</span>
               <span>and more coming</span>
             </div>
