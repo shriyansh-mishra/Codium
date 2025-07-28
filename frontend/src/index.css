@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* CSS Custom Properties (Variables) for theming */
 :root {
-  --font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --bg-primary: #0a0a0a;
   --bg-secondary: #1a1a1a;
   --bg-tertiary: #2a2a2a;
@@ -40,6 +40,7 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
+  padding-top: 80px; /* Account for fixed navbar */
 }
 
 code {
@@ -253,6 +254,19 @@ code {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--border-secondary);
+}
+
+/* Navbar Glass Effect */
+.navbar-glass {
+  background: rgba(26, 26, 26, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1000 !important;
 }
 
 /* Navbar link styles */
