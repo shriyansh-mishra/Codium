@@ -3,30 +3,38 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import MonacoEditor from '@monaco-editor/react';
 
+export const LANGUAGES = [
+  { label: 'JavaScript', value: 'javascript', sample: '// Start coding!\nconsole.log("Hello, Codium!");' },
+  { label: 'Python', value: 'python', sample: '# Start coding!\nprint("Hello, Codium!")' },
+  { label: 'Java', value: 'java', sample: '// Start coding!\npublic class Main {\n  public static void main(String[] args) {\n    System.out.println("Hello, Codium!");\n  }\n}' },
+  { label: 'C++', value: 'cpp', sample: '// Start coding!\n#include <iostream>\nint main() {\n  std::cout << "Hello, Codium!" << std::endl;\n  return 0;\n}' },
+  { label: 'C', value: 'c', sample: '// Start coding!\n#include <stdio.h>\nint main() {\n  printf("Hello, Codium!\\n");\n  return 0;\n}' },
+  { label: 'TypeScript', value: 'typescript', sample: '// Start coding!\nconsole.log("Hello, Codium!");' },
+  { label: 'JSON', value: 'json', sample: '{\n  "hello": "Codium"\n}' },
+  { label: 'HTML', value: 'html', sample: '<!-- Start coding! -->\n<h1>Hello, Codium!</h1>' },
+  { label: 'Markdown', value: 'markdown', sample: '# Start coding!\nHello, **Codium**!' },
+];
 
-const CodeEditor = () => {
-  const [code, setCode] = useState('// Start coding!\nconsole.log("Hello, Codium!");');
+const CodeEditor = ({ sidebarLanguage }) => {
+  const [language, setLanguage] = useState(sidebarLanguage || LANGUAGES[0].value);
+  const [code, setCode] = useState(LANGUAGES.find(l => l.value === (sidebarLanguage || LANGUAGES[0].value)).sample);
+
+  React.useEffect(() => {
+    if (sidebarLanguage && sidebarLanguage !== language) {
+      setLanguage(sidebarLanguage);
+      const langObj = LANGUAGES.find(l => l.value === sidebarLanguage);
+      if (langObj && code === '') {
+        setCode(langObj.sample);
+      }
+    }
+  }, [sidebarLanguage, language, code]);
 
   return (
-    <div style={{ width: '100%', maxWidth: 1100, margin: '0 auto', padding: 'var(--spacing-xl) 0' }}>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        style={{ marginBottom: 'var(--spacing-lg)' }}
-      >
-        <h1 style={{ fontSize: '2.2rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>Code Editor</h1>
-        <p style={{ color: 'var(--text-secondary)' }}>Write, run, and save your code in a real IDE experience</p>
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        style={{ background: 'var(--bg-tertiary)', borderRadius: 'var(--radius-xl)', boxShadow: '0 2px 16px 0 rgba(0,0,0,0.10)', border: '1.5px solid var(--border-primary)', padding: 0 }}
-      >
+    <div className="h-full w-full bg-code-dark">
+      <div className="h-full">
         <MonacoEditor
-          height="500px"
-          defaultLanguage="javascript"
+          height="100vh"
+          language={language}
           theme="vs-dark"
           value={code}
           onChange={value => setCode(value)}
@@ -41,13 +49,22 @@ const CodeEditor = () => {
             lineNumbers: 'on',
             renderLineHighlight: 'all',
             tabSize: 2,
-            theme: 'vs-dark',
             scrollbar: { vertical: 'auto', horizontal: 'auto' },
+            cursorSmoothCaretAnimation: true,
+            cursorBlinking: 'expand',
+            renderWhitespace: 'all',
+            renderIndentGuides: true,
+            roundedSelection: true,
+            selectionHighlight: true,
+            scrollBeyondLastColumn: 2,
+            quickSuggestions: true,
+            suggestOnTriggerCharacters: true,
+            fixedOverflowWidgets: true,
           }}
         />
-      </motion.div>
+      </div>
     </div>
   );
 };
 
-export default CodeEditor; 
+export default CodeEditor;
