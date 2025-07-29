@@ -41,21 +41,23 @@ const GlobalNavbar = () => {
         transition={{ duration: 0.5 }}
         style={{ display: 'flex', alignItems: 'center' }}
       >
-        <div style={{ 
-          height: '40px', 
-          width: '40px', 
-          background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))', 
-          borderRadius: 'var(--radius-lg)', 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center',
-          marginRight: 'var(--spacing-sm)'
-        }}>
-          <CodeBracketIcon style={{ height: '24px', width: '24px', color: 'var(--text-primary)' }} />
-        </div>
-        <span style={{ fontSize: '2rem', fontWeight: '700', color: 'var(--color-primary)', fontFamily: 'var(--font-family)', letterSpacing: '1px' }}>
-          Codium
-        </span>
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+          <div style={{ 
+            height: '40px', 
+            width: '40px', 
+            background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))', 
+            borderRadius: 'var(--radius-lg)', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            marginRight: 'var(--spacing-sm)'
+          }}>
+            <CodeBracketIcon style={{ height: '24px', width: '24px', color: 'var(--text-primary)' }} />
+          </div>
+          <span style={{ fontSize: '2rem', fontWeight: '700', color: 'var(--color-primary)', fontFamily: 'var(--font-family)', letterSpacing: '1px' }}>
+            Codium
+          </span>
+        </Link>
       </motion.div>
 
       {/* Navigation Links */}
