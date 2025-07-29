@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -34,159 +35,182 @@ const Login = () => {
   };
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--bg-primary)', padding: 'var(--spacing-2xl) var(--spacing-md)' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-primary)', padding: 'var(--spacing-2xl) var(--spacing-md)' }}>
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        style={{ maxWidth: '400px', width: '100%' }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        style={{ width: '100%', maxWidth: 400, background: 'var(--bg-secondary)', borderRadius: 'var(--radius-xl)', boxShadow: '0 4px 32px 0 rgba(0,0,0,0.10)', padding: 'var(--spacing-2xl) var(--spacing-xl)' }}
       >
-        <div>
-          <motion.div
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
-            style={{ margin: '0 auto', height: '48px', width: '48px', backgroundColor: 'var(--color-primary)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          >
-            <svg style={{ height: '32px', width: '32px', color: 'var(--text-primary)' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-            </svg>
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.3 }}
-            style={{ marginTop: 'var(--spacing-lg)', textAlign: 'center', fontSize: '1.875rem', fontWeight: '800', color: 'var(--text-primary)' }}
-          >
-            Welcome back
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.4 }}
-            style={{ marginTop: 'var(--spacing-sm)', textAlign: 'center', fontSize: '0.875rem', color: 'var(--text-tertiary)' }}
-          >
-            Sign in to your account to continue coding
-          </motion.p>
-        </div>
-
+        <motion.div
+          initial={{ scale: 0.92, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 'var(--spacing-lg)' }}
+        >
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="12" fill="var(--color-primary)" />
+            <path d="M13 20h14M20 13v14" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" />
+          </svg>
+        </motion.div>
+        <motion.h2
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+          style={{ textAlign: 'center', fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: 'var(--spacing-md)' }}
+        >
+          Welcome back
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.25 }}
+          style={{ textAlign: 'center', fontSize: '1rem', color: 'var(--text-tertiary)', marginBottom: 'var(--spacing-xl)' }}
+        >
+          Sign in to your account to continue coding
+        </motion.p>
         <motion.form
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.5 }}
-          style={{ marginTop: 'var(--spacing-xl)' }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
           onSubmit={handleSubmit(onSubmit)}
         >
           {error && (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              style={{ backgroundColor: 'rgba(244, 71, 71, 0.1)', border: '1px solid var(--color-error)', color: 'var(--color-error)', padding: 'var(--spacing-md)', borderRadius: 'var(--radius-md)', marginBottom: 'var(--spacing-lg)' }}
+              style={{ background: 'rgba(244, 71, 71, 0.10)', border: '1px solid var(--color-error)', color: 'var(--color-error)', padding: 'var(--spacing-md)', borderRadius: 'var(--radius-md)', marginBottom: 'var(--spacing-lg)', fontSize: '1rem', textAlign: 'center' }}
             >
               {error}
             </motion.div>
           )}
-
-          <div style={{ marginBottom: 'var(--spacing-md)' }}>
-            <div style={{ marginBottom: 'var(--spacing-md)' }}>
-              <label htmlFor="email" className="form-label">
-                Email address
-              </label>
-              <div style={{ marginTop: 'var(--spacing-xs)' }}>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className={`form-input ${errors.email ? 'error' : ''}`}
-                  placeholder="Enter your email"
-                  {...register('email', {
-                    required: 'Email is required',
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: 'Invalid email address',
-                    },
-                  })}
-                />
-                {errors.email && (
-                  <p className="form-error">{errors.email.message}</p>
-                )}
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="password" className="form-label">
-                Password
-              </label>
-              <div style={{ marginTop: 'var(--spacing-xs)', position: 'relative' }}>
-                <input
-                  id="password"
-                  name="password"
-                  type={showPassword ? 'text' : 'password'}
-                  autoComplete="current-password"
-                  required
-                  className={`form-input ${errors.password ? 'error' : ''}`}
-                  style={{ paddingRight: '2.5rem' }}
-                  placeholder="Enter your password"
-                  {...register('password', {
-                    required: 'Password is required',
-                    minLength: {
-                      value: 6,
-                      message: 'Password must be at least 6 characters',
-                    },
-                  })}
-                />
-                <button
-                  type="button"
-                  style={{ position: 'absolute', top: '50%', right: 'var(--spacing-sm)', transform: 'translateY(-50%)', display: 'flex', alignItems: 'center' }}
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? (
-                    <EyeSlashIcon style={{ height: '20px', width: '20px', color: 'var(--text-tertiary)' }} />
-                  ) : (
-                    <EyeIcon style={{ height: '20px', width: '20px', color: 'var(--text-tertiary)' }} />
-                  )}
-                </button>
-                {errors.password && (
-                  <p className="form-error">{errors.password.message}</p>
-                )}
-              </div>
-            </div>
+          <div style={{ marginBottom: 'var(--spacing-lg)' }}>
+            <label htmlFor="email" style={{ display: 'block', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 6, fontSize: '1rem' }}>Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              style={{
+                width: '100%',
+                padding: '0.85em 1em',
+                borderRadius: 'var(--radius-lg)',
+                border: `1.5px solid ${errors.email ? 'var(--color-error)' : 'var(--border-primary)'}`,
+                background: 'var(--bg-tertiary)',
+                color: 'var(--text-primary)',
+                fontSize: '1rem',
+                outline: 'none',
+                marginBottom: errors.email ? 2 : 0,
+                transition: 'border 0.2s',
+                boxSizing: 'border-box'
+              }}
+              placeholder="Enter your email"
+              {...register('email', {
+                required: 'Email is required',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Invalid email address',
+                },
+              })}
+            />
+            {errors.email && (
+              <p style={{ color: 'var(--color-error)', fontSize: '0.95em', marginTop: 2 }}>{errors.email.message}</p>
+            )}
           </div>
-
-          <div>
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              type="submit"
-              disabled={isLoading}
-              className="btn btn-primary"
-              style={{ width: '100%', justifyContent: 'center' }}
-            >
-              {isLoading ? (
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <div className="spinner" style={{ marginRight: 'var(--spacing-sm)' }}></div>
-                  Signing in...
-                </div>
-              ) : (
-                'Sign in'
-              )}
-            </motion.button>
+          <div style={{ marginBottom: 'var(--spacing-lg)' }}>
+            <label htmlFor="password" style={{ display: 'block', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 6, fontSize: '1rem' }}>Password</label>
+            <div style={{ position: 'relative' }}>
+              <input
+                id="password"
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                autoComplete="current-password"
+                required
+                style={{
+                  width: '100%',
+                  padding: '0.85em 1em',
+                  borderRadius: 'var(--radius-lg)',
+                  border: `1.5px solid ${errors.password ? 'var(--color-error)' : 'var(--border-primary)'}`,
+                  background: 'var(--bg-tertiary)',
+                  color: 'var(--text-primary)',
+                  fontSize: '1rem',
+                  outline: 'none',
+                  marginBottom: errors.password ? 2 : 0,
+                  transition: 'border 0.2s',
+                  boxSizing: 'border-box',
+                  paddingRight: '2.5em'
+                }}
+                placeholder="Enter your password"
+                {...register('password', {
+                  required: 'Password is required',
+                  minLength: {
+                    value: 6,
+                    message: 'Password must be at least 6 characters',
+                  },
+                })}
+              />
+              <button
+                type="button"
+                style={{ position: 'absolute', top: '50%', right: 10, transform: 'translateY(-50%)', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                onClick={() => setShowPassword(!showPassword)}
+                tabIndex={-1}
+              >
+                {showPassword ? (
+                  <EyeSlashIcon style={{ height: 20, width: 20, color: 'var(--text-tertiary)' }} />
+                ) : (
+                  <EyeIcon style={{ height: 20, width: 20, color: 'var(--text-tertiary)' }} />
+                )}
+              </button>
+            </div>
+            {errors.password && (
+              <p style={{ color: 'var(--color-error)', fontSize: '0.95em', marginTop: 2 }}>{errors.password.message}</p>
+            )}
           </div>
-
-          <div style={{ textAlign: 'center', marginTop: 'var(--spacing-lg)' }}>
-            <p style={{ fontSize: '0.875rem', color: 'var(--text-tertiary)' }}>
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            type="submit"
+            disabled={isLoading}
+            style={{
+              width: '100%',
+              padding: '0.95em 0',
+              borderRadius: 'var(--radius-lg)',
+              background: 'var(--color-primary)',
+              color: '#fff',
+              fontWeight: 700,
+              fontSize: '1.1rem',
+              border: 'none',
+              boxShadow: '0 2px 12px 0 rgba(255,107,53,0.10)',
+              marginTop: 'var(--spacing-md)',
+              marginBottom: 'var(--spacing-md)',
+              cursor: isLoading ? 'not-allowed' : 'pointer',
+              transition: 'background 0.2s, box-shadow 0.2s',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8
+            }}
+          >
+            {isLoading ? (
+              <>
+                <div className="spinner" style={{ marginRight: 8 }}></div>
+                Signing in...
+              </>
+            ) : (
+              'Sign in'
+            )}
+          </motion.button>
+          <div style={{ textAlign: 'center', marginTop: 'var(--spacing-md)' }}>
+            <span style={{ fontSize: '0.98rem', color: 'var(--text-tertiary)' }}>
               Don't have an account?{' '}
               <Link
                 to="/register"
-                style={{ fontWeight: '500', color: 'var(--color-primary)', textDecoration: 'none' }}
-                onMouseEnter={(e) => e.target.style.color = 'var(--color-primary-hover)'}
-                onMouseLeave={(e) => e.target.style.color = 'var(--color-primary)'}
+                style={{ fontWeight: 600, color: 'var(--color-primary)', textDecoration: 'none', transition: 'color 0.2s' }}
               >
                 Sign up
               </Link>
-            </p>
+            </span>
           </div>
         </motion.form>
       </motion.div>
