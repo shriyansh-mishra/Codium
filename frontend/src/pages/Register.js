@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -38,226 +39,262 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-code-dark py-12 px-4 sm:px-6 lg:px-8">
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-primary)', padding: 'var(--spacing-2xl) var(--spacing-md)' }}>
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-md w-full space-y-8"
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        style={{ width: '100%', maxWidth: 400, background: 'var(--bg-secondary)', borderRadius: 'var(--radius-xl)', boxShadow: '0 4px 32px 0 rgba(0,0,0,0.10)', padding: 'var(--spacing-2xl) var(--spacing-xl)' }}
       >
-        <div>
-          <motion.div
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
-            className="mx-auto h-12 w-12 bg-code-blue rounded-lg flex items-center justify-center"
-          >
-            <svg className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-            </svg>
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.3 }}
-            className="mt-6 text-center text-3xl font-extrabold text-white"
-          >
-            Create your account
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.4 }}
-            className="mt-2 text-center text-sm text-gray-400"
-          >
-            Join us and start coding today
-          </motion.p>
-        </div>
-
+        <motion.div
+          initial={{ scale: 0.92, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 'var(--spacing-lg)' }}
+        >
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="12" fill="var(--color-primary)" />
+            <path d="M18 20h4M20 18v4" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" />
+          </svg>
+        </motion.div>
+        <motion.h2
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+          style={{ textAlign: 'center', fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: 'var(--spacing-md)' }}
+        >
+          Create your account
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.25 }}
+          style={{ textAlign: 'center', fontSize: '1rem', color: 'var(--text-tertiary)', marginBottom: 'var(--spacing-xl)' }}
+        >
+          Join us and start coding today
+        </motion.p>
         <motion.form
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.5 }}
-          className="mt-8 space-y-6"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
           onSubmit={handleSubmit(onSubmit)}
         >
           {error && (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="bg-code-red bg-opacity-10 border border-code-red text-code-red px-4 py-3 rounded-lg"
+              style={{ background: 'rgba(244, 71, 71, 0.10)', border: '1px solid var(--color-error)', color: 'var(--color-error)', padding: 'var(--spacing-md)', borderRadius: 'var(--radius-md)', marginBottom: 'var(--spacing-lg)', fontSize: '1rem', textAlign: 'center' }}
             >
               {error}
             </motion.div>
           )}
-
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-300">
-                Full Name
-              </label>
-              <div className="mt-1">
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  autoComplete="name"
-                  required
-                  className={`appearance-none relative block w-full px-3 py-2 border rounded-lg placeholder-gray-500 text-white bg-code-light border-code-lighter focus:outline-none focus:ring-2 focus:ring-code-blue focus:border-transparent ${
-                    errors.name ? 'border-code-red' : ''
-                  }`}
-                  placeholder="Enter your full name"
-                  {...register('name', {
-                    required: 'Name is required',
-                    minLength: {
-                      value: 2,
-                      message: 'Name must be at least 2 characters',
-                    },
-                  })}
-                />
-                {errors.name && (
-                  <p className="mt-1 text-sm text-code-red">{errors.name.message}</p>
-                )}
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-300">
-                Email address
-              </label>
-              <div className="mt-1">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className={`appearance-none relative block w-full px-3 py-2 border rounded-lg placeholder-gray-500 text-white bg-code-light border-code-lighter focus:outline-none focus:ring-2 focus:ring-code-blue focus:border-transparent ${
-                    errors.email ? 'border-code-red' : ''
-                  }`}
-                  placeholder="Enter your email"
-                  {...register('email', {
-                    required: 'Email is required',
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: 'Invalid email address',
-                    },
-                  })}
-                />
-                {errors.email && (
-                  <p className="mt-1 text-sm text-code-red">{errors.email.message}</p>
-                )}
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-300">
-                Password
-              </label>
-              <div className="mt-1 relative">
-                <input
-                  id="password"
-                  name="password"
-                  type={showPassword ? 'text' : 'password'}
-                  autoComplete="new-password"
-                  required
-                  className={`appearance-none relative block w-full px-3 py-2 pr-10 border rounded-lg placeholder-gray-500 text-white bg-code-light border-code-lighter focus:outline-none focus:ring-2 focus:ring-code-blue focus:border-transparent ${
-                    errors.password ? 'border-code-red' : ''
-                  }`}
-                  placeholder="Enter your password"
-                  {...register('password', {
-                    required: 'Password is required',
-                    minLength: {
-                      value: 6,
-                      message: 'Password must be at least 6 characters',
-                    },
-                  })}
-                />
-                <button
-                  type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? (
-                    <EyeSlashIcon className="h-5 w-5 text-gray-400" />
-                  ) : (
-                    <EyeIcon className="h-5 w-5 text-gray-400" />
-                  )}
-                </button>
-                {errors.password && (
-                  <p className="mt-1 text-sm text-code-red">{errors.password.message}</p>
-                )}
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-300">
-                Confirm Password
-              </label>
-              <div className="mt-1 relative">
-                <input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type={showConfirmPassword ? 'text' : 'password'}
-                  autoComplete="new-password"
-                  required
-                  className={`appearance-none relative block w-full px-3 py-2 pr-10 border rounded-lg placeholder-gray-500 text-white bg-code-light border-code-lighter focus:outline-none focus:ring-2 focus:ring-code-blue focus:border-transparent ${
-                    errors.confirmPassword ? 'border-code-red' : ''
-                  }`}
-                  placeholder="Confirm your password"
-                  {...register('confirmPassword', {
-                    required: 'Please confirm your password',
-                    validate: (value) =>
-                      value === password || 'Passwords do not match',
-                  })}
-                />
-                <button
-                  type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                >
-                  {showConfirmPassword ? (
-                    <EyeSlashIcon className="h-5 w-5 text-gray-400" />
-                  ) : (
-                    <EyeIcon className="h-5 w-5 text-gray-400" />
-                  )}
-                </button>
-                {errors.confirmPassword && (
-                  <p className="mt-1 text-sm text-code-red">{errors.confirmPassword.message}</p>
-                )}
-              </div>
-            </div>
+          <div style={{ marginBottom: 'var(--spacing-lg)' }}>
+            <label htmlFor="name" style={{ display: 'block', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 6, fontSize: '1rem' }}>Full Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autoComplete="name"
+              required
+              style={{
+                width: '100%',
+                padding: '0.85em 1em',
+                borderRadius: 'var(--radius-lg)',
+                border: `1.5px solid ${errors.name ? 'var(--color-error)' : 'var(--border-primary)'}`,
+                background: 'var(--bg-tertiary)',
+                color: 'var(--text-primary)',
+                fontSize: '1rem',
+                outline: 'none',
+                marginBottom: errors.name ? 2 : 0,
+                transition: 'border 0.2s',
+                boxSizing: 'border-box'
+              }}
+              placeholder="Enter your full name"
+              {...register('name', {
+                required: 'Name is required',
+                minLength: {
+                  value: 2,
+                  message: 'Name must be at least 2 characters',
+                },
+              })}
+            />
+            {errors.name && (
+              <p style={{ color: 'var(--color-error)', fontSize: '0.95em', marginTop: 2 }}>{errors.name.message}</p>
+            )}
           </div>
-
-          <div>
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              type="submit"
-              disabled={isLoading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-code-blue hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-code-blue disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
-            >
-              {isLoading ? (
-                <div className="flex items-center">
-                  <div className="spinner mr-2"></div>
-                  Creating account...
-                </div>
-              ) : (
-                'Create account'
-              )}
-            </motion.button>
+          <div style={{ marginBottom: 'var(--spacing-lg)' }}>
+            <label htmlFor="email" style={{ display: 'block', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 6, fontSize: '1rem' }}>Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              style={{
+                width: '100%',
+                padding: '0.85em 1em',
+                borderRadius: 'var(--radius-lg)',
+                border: `1.5px solid ${errors.email ? 'var(--color-error)' : 'var(--border-primary)'}`,
+                background: 'var(--bg-tertiary)',
+                color: 'var(--text-primary)',
+                fontSize: '1rem',
+                outline: 'none',
+                marginBottom: errors.email ? 2 : 0,
+                transition: 'border 0.2s',
+                boxSizing: 'border-box'
+              }}
+              placeholder="Enter your email"
+              {...register('email', {
+                required: 'Email is required',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Invalid email address',
+                },
+              })}
+            />
+            {errors.email && (
+              <p style={{ color: 'var(--color-error)', fontSize: '0.95em', marginTop: 2 }}>{errors.email.message}</p>
+            )}
           </div>
-
-          <div className="text-center">
-            <p className="text-sm text-gray-400">
+          <div style={{ marginBottom: 'var(--spacing-lg)' }}>
+            <label htmlFor="password" style={{ display: 'block', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 6, fontSize: '1rem' }}>Password</label>
+            <div style={{ position: 'relative' }}>
+              <input
+                id="password"
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                autoComplete="new-password"
+                required
+                style={{
+                  width: '100%',
+                  padding: '0.85em 1em',
+                  borderRadius: 'var(--radius-lg)',
+                  border: `1.5px solid ${errors.password ? 'var(--color-error)' : 'var(--border-primary)'}`,
+                  background: 'var(--bg-tertiary)',
+                  color: 'var(--text-primary)',
+                  fontSize: '1rem',
+                  outline: 'none',
+                  marginBottom: errors.password ? 2 : 0,
+                  transition: 'border 0.2s',
+                  boxSizing: 'border-box',
+                  paddingRight: '2.5em'
+                }}
+                placeholder="Enter your password"
+                {...register('password', {
+                  required: 'Password is required',
+                  minLength: {
+                    value: 6,
+                    message: 'Password must be at least 6 characters',
+                  },
+                })}
+              />
+              <button
+                type="button"
+                style={{ position: 'absolute', top: '50%', right: 10, transform: 'translateY(-50%)', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                onClick={() => setShowPassword(!showPassword)}
+                tabIndex={-1}
+              >
+                {showPassword ? (
+                  <EyeSlashIcon style={{ height: 20, width: 20, color: 'var(--text-tertiary)' }} />
+                ) : (
+                  <EyeIcon style={{ height: 20, width: 20, color: 'var(--text-tertiary)' }} />
+                )}
+              </button>
+            </div>
+            {errors.password && (
+              <p style={{ color: 'var(--color-error)', fontSize: '0.95em', marginTop: 2 }}>{errors.password.message}</p>
+            )}
+          </div>
+          <div style={{ marginBottom: 'var(--spacing-lg)' }}>
+            <label htmlFor="confirmPassword" style={{ display: 'block', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 6, fontSize: '1rem' }}>Confirm Password</label>
+            <div style={{ position: 'relative' }}>
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type={showConfirmPassword ? 'text' : 'password'}
+                autoComplete="new-password"
+                required
+                style={{
+                  width: '100%',
+                  padding: '0.85em 1em',
+                  borderRadius: 'var(--radius-lg)',
+                  border: `1.5px solid ${errors.confirmPassword ? 'var(--color-error)' : 'var(--border-primary)'}`,
+                  background: 'var(--bg-tertiary)',
+                  color: 'var(--text-primary)',
+                  fontSize: '1rem',
+                  outline: 'none',
+                  marginBottom: errors.confirmPassword ? 2 : 0,
+                  transition: 'border 0.2s',
+                  boxSizing: 'border-box',
+                  paddingRight: '2.5em'
+                }}
+                placeholder="Confirm your password"
+                {...register('confirmPassword', {
+                  required: 'Please confirm your password',
+                  validate: (value) => value === password || 'Passwords do not match',
+                })}
+              />
+              <button
+                type="button"
+                style={{ position: 'absolute', top: '50%', right: 10, transform: 'translateY(-50%)', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                tabIndex={-1}
+              >
+                {showConfirmPassword ? (
+                  <EyeSlashIcon style={{ height: 20, width: 20, color: 'var(--text-tertiary)' }} />
+                ) : (
+                  <EyeIcon style={{ height: 20, width: 20, color: 'var(--text-tertiary)' }} />
+                )}
+              </button>
+            </div>
+            {errors.confirmPassword && (
+              <p style={{ color: 'var(--color-error)', fontSize: '0.95em', marginTop: 2 }}>{errors.confirmPassword.message}</p>
+            )}
+          </div>
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            type="submit"
+            disabled={isLoading}
+            style={{
+              width: '100%',
+              padding: '0.95em 0',
+              borderRadius: 'var(--radius-lg)',
+              background: 'var(--color-primary)',
+              color: '#fff',
+              fontWeight: 700,
+              fontSize: '1.1rem',
+              border: 'none',
+              boxShadow: '0 2px 12px 0 rgba(255,107,53,0.10)',
+              marginTop: 'var(--spacing-md)',
+              marginBottom: 'var(--spacing-md)',
+              cursor: isLoading ? 'not-allowed' : 'pointer',
+              transition: 'background 0.2s, box-shadow 0.2s',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8
+            }}
+          >
+            {isLoading ? (
+              <>
+                <div className="spinner" style={{ marginRight: 8 }}></div>
+                Creating account...
+              </>
+            ) : (
+              'Create account'
+            )}
+          </motion.button>
+          <div style={{ textAlign: 'center', marginTop: 'var(--spacing-md)' }}>
+            <span style={{ fontSize: '0.98rem', color: 'var(--text-tertiary)' }}>
               Already have an account?{' '}
               <Link
                 to="/login"
-                className="font-medium text-code-blue hover:text-blue-400 transition-colors duration-200"
+                style={{ fontWeight: 600, color: 'var(--color-primary)', textDecoration: 'none', transition: 'color 0.2s' }}
               >
                 Sign in
               </Link>
-            </p>
+            </span>
           </div>
         </motion.form>
       </motion.div>
