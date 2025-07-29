@@ -279,7 +279,7 @@ const Landing = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Link
-                  to="/register"
+                  to="/editor"
                   className="btn btn-primary"
                                   style={{ 
                   fontSize: '1.125rem', 
