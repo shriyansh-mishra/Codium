@@ -1,1 +1,1 @@
-# !!project suspended ⚠️
+# project suspended ⚠️
